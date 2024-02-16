@@ -1,113 +1,161 @@
-import Image from 'next/image'
+"use client";
+import { Logo } from "@/assets/techs/logo";
+import { Techs } from "@/components/techs";
+import { TerminalContact } from "@/components/terminal-contact";
+import { Boxes } from "@/components/ui/background-boxes";
+import { Button } from "@/components/ui/button";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { WavyBackground } from "@/components/ui/wavy-background";
+import Spline from "@splinetool/react-spline";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+const playSound = () => {
+  const audio = new Audio('/key-press.mp3');
+	audio.volume = 0.3
+  audio.play();
+};
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const skewRef = useRef<HTMLDivElement | null>(null);
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	useEffect(() => {		
+		document.addEventListener("keyup", playSound);
+		return () => document.removeEventListener("keyup", playSound);
+	}, []);
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+	useEffect(() => {
+		if (!skewRef.current) return;
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+		const content = skewRef.current;
+		const maxSkew = 2;
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+		let currentPosition = window.scrollY;
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+		function skewEffect() {
+			const newPosition = window.scrollY;
+			const dif = newPosition - currentPosition;
+
+			let skew = dif * 0.8;
+			if (skew > maxSkew || skew < -maxSkew) {
+				if (skew > 0) {
+					skew = maxSkew;
+				} else if (skew < 0) {
+					skew = -maxSkew;
+				}
+			}
+
+			content.style.transform = `skewY(${skew}deg)`;
+			currentPosition = newPosition;
+			requestAnimationFrame(skewEffect);
+		}
+
+		skewEffect();
+	}, []);
+
+	return (
+		<main className="relative w-full [perspective:1500px] pb-32">
+			<div
+				className="will-change-transform transition-transform duration-500 ease-linear"
+				ref={skewRef}
+			>
+				<div className="fixed pointer-events-none bottom-0 w-full flex items-center justify-center bg-gradient-to-t from-black to-transparent z-50 h-60" />
+
+				<section className="w-full overflow-hidden h-screen min-h-[920px] sticky top-0 left-0">
+					<WavyBackground
+						speed="slow"
+						waveOpacity={0.3}
+						className="w-full h-full mx-auto flex items-center justify-center"
+					>
+						<div className="w-full h-full mx-auto flex items-center justify-center">
+							<Boxes className="opacity-10" />
+							<div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]" />
+							<div className="w-full flex flex-col items-center">
+								<div className="relative text-center justify-center w-full flex flex-col items-center max-w-lg space-y-2 px-2">
+									<Logo containerClassName="sm:hidden" className="w-8 h-8" />
+									<h2 className="text-2xl uppercase font-bold">
+										Gulherme Brogio
+									</h2>
+									<h1 className="sm:text-5xl text-4xl max-sm:flex-col uppercase font-bold inline-flex items-center gap-2">
+										<Logo
+											containerClassName="max-sm:hidden"
+											className="w-8 h-8"
+										/>{" "}
+										Web Developer
+									</h1>
+									<TypewriterEffect
+										words={"Empower Your Digital Dreams: Seeking a Skilled Web Developer to Transform Ideas into Seamless Online Experiences!"
+											.split(" ")
+											.map((w) => ({ text: w }))}
+										cursorClassName="w-[2px] !h-4"
+									/>
+									<div className="flex">
+										<Button asChild>
+											<Link
+												href="/curriculum-and-certificates.pdf"
+												download
+												rel="noopener noreferrer"
+												target="_blank"
+											>
+												Download CV
+											</Link>
+										</Button>
+										<Button variant="link">Work Together</Button>
+									</div>
+								</div>
+								<Techs />
+							</div>
+							<div className="absolute w-full select-none -z-10 h-full top-0 left-0 text-center flex items-center justify-center">
+								<span className="text-[20vw] font-black opacity-5">
+									G<span className="opacity-50">BROGIO</span>
+								</span>
+								<span className="text-[20vw] font-black blur-lg absolute left-1/2 -translate-y-1/2 -translate-x-1/2 top-1/2 opacity-5">
+									G<span className="opacity-50">BROGIO</span>
+								</span>
+							</div>
+						</div>
+					</WavyBackground>
+				</section>
+
+				<section className="bg-black/80 h-full backdrop-blur-lg relative py-32 border-t-1 border-white flex">
+					<p className="text-sm max-w-lg mx-auto text-center relative z-10">
+						Hello! My name is Guilherme Brogio, and I am a passionate enthusiast
+						of computing and web development. Since the moment I dove into the
+						world of computers (+/-{" "}
+						{(new Date().getFullYear() - 2006 - 8).toString().replace("20", "")}{" "}
+						years ago), I was captivated by the incredible ability to transform
+						lines of code into amazing digital experiences, building my first
+						Website at 12 years old.
+						<br />
+						<br />
+						My journey in web development started with an incessant curiosity to
+						understand how things work behind the scenes of the web. This
+						passion drove me to explore programming languages, frameworks and
+						technologies, constantly seeking to improve my skills.
+						<br />
+						<br />I firmly believe in the importance of collaboration and
+						continuous learning. Along my journey, I learned that the developer
+						community is incredibly powerful, and the exchange of knowledge is
+						essential for personal and professional growth.
+						<br />
+						<br />
+						Over the years, I had the opportunity to work on exciting projects
+						that challenged my skills and expanded my vision about the potential
+						of web development. Every challenge faced was an opportunity for
+						growth and improvement.
+					</p>
+
+					<span className="absolute bottom-2 text-center w-full italic text-muted-foreground text-sm">
+						Type something*
+					</span>
+					<div className="absolute top-0 left-0 w-full h-full opacity-30 z-0">
+						<Spline scene="https://draft.spline.design/xsWJhqijXvJAKxMh/scene.splinecode" />
+					</div>
+				</section>
+				<section className="bg-black/80 h-full backdrop-blur-lg relative z-2 py-32 border-t-1 border-white flex">
+					<TerminalContact />
+				</section>
+			</div>
+		</main>
+	);
 }
