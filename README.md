@@ -16,7 +16,7 @@ I am Brazilian. Experienced FullStack Web Developer, covering all stages of web 
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Material UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=mui&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-0081CB?style=for-the-badge&logo=typescript&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-0AC97F?style=for-the-badge&logo=figma&logoColor=white)
 ![Styled Components & Icons](https://img.shields.io/badge/%F0%9F%92%85%20Styled_Components&Icons-pink?style=for-the-badge)
